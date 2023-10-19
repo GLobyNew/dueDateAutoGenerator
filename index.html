@@ -13,10 +13,12 @@
     <div id="wrapper">
         <div id="inputs">
             <input type="date" id="startDate">
-            <button onclick="myFunction()">Сгенерировать сроки</button>
+            <button onclick="generate()">Сгенерировать сроки</button>
         </div>
-        <div id="text"></div>
+        <div id="text" contenteditable="true"></div>
+		<button onclick="copyText()" class="copy-button">Скопировать</button>
     </div>
+	
 	<script src="scripts.js"></script>
 
     <script>

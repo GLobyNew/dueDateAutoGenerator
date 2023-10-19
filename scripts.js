@@ -1,4 +1,4 @@
- function myFunction() {
+ function generate() {
   var divElement = document.getElementById('text');
   divElement.innerHTML = '';
 
@@ -33,4 +33,34 @@
 
     divElement.innerHTML += task + ' - ' + formattedEndDate + "<br>";
   }
+}
+
+// Функция для копирования текста из <div id="text"></div>
+function copyText() {
+    var textElement = document.getElementById('text');
+    var copyButton = document.querySelector('.copy-button');
+    
+    // Создаем временный элемент для копирования текста
+    var tempTextArea = document.createElement('textarea');
+    tempTextArea.value = textElement.textContent;
+    
+    // Добавляем временный элемент в документ и выделяем его содержимое
+    document.body.appendChild(tempTextArea);
+    tempTextArea.select();
+    
+    // Копируем текст в буфер обмена
+    document.execCommand('copy');
+    
+    // Удаляем временный элемент
+    document.body.removeChild(tempTextArea);
+    
+    // Оповещаем пользователя о копировании
+    copyButton.textContent = 'Скопировано!';
+    copyButton.classList.add('copied');
+    
+    // Убираем анимацию и возвращаем исходное состояние через 2 секунды
+    setTimeout(function() {
+        copyButton.textContent = 'Скопировать';
+        copyButton.classList.remove('copied');
+    }, 2000);
 }

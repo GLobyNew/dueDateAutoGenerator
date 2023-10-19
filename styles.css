@@ -33,7 +33,26 @@ button {
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Анимация при наведении */
+  margin-top: 10px; /* Расположение кнопки ниже текстового окна */
+
 }
+
+/* Стили для кнопки "Скопировать" */
+button.copy-button {
+    margin-top: 10px; /* Расположение кнопки ниже текстового окна */
+    background-color: #333; /* Измените цвет фона на более темный */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button.copy-button.copied {
+    background-color: #4CAF50;
+}
+
 
 button:hover {
   background-color: #333; /* Темный цвет фона при наведении */
@@ -49,3 +68,4 @@ button:hover {
   padding: 20px;
   border-radius: 5px;
 }
+
