@@ -1,0 +1,51 @@
+#wrapper {
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-align: center;
+}
+
+a:hover {
+  color: #0FC;
+  text-decoration: underline;
+}
+
+#inputs {
+  margin-bottom: 20px;
+}
+
+#startDate {
+  height: 30px;
+  width: 150px;
+  padding: 5px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  height: 30px;
+  background-color: transparent; /* Без цвета фона */
+  color: #333; /* Темный цвет текста */
+  border: 1px solid #333; /* Темная граница */
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Анимация при наведении */
+}
+
+button:hover {
+  background-color: #333; /* Темный цвет фона при наведении */
+  color: white; /* Белый цвет текста при наведении */
+  border-color: transparent; /* Прозрачная граница при наведении */
+}
+
+#text {
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: left;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 5px;
+}
