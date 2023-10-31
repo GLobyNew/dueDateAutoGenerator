@@ -4,38 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Генерация сроков</title>
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	
-
-
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
     <div id="wrapper">
         <div id="inputs">
-            <input type="date" id="startDate">
-            <button onclick="generate()">Сгенерировать сроки</button>
-        </div>
-        <div id="text" contenteditable="true"></div>
-		<button onclick="copyText()" class="copy-button">Скопировать</button>
+    <input type="date" id="startDate">
+    <div class="select-wrapper">
+    <select id="projectType">
+        <option value="Трэвел">Трэвел</option>
+        <option value="Студийка">Студийка</option>
+        <option value="Фильмы с корром">Фильмы с корром</option>
+    </select>
+</div>
+    <button onclick="generate()">Сгенерировать</button>
+</div>
+        <textarea id="text" rows="15" cols="80" placeholder="Результат генерации будет отображаться здесь"></textarea>
+        <button onclick="copyText()" class="copy-button">Скопировать</button>
     </div>
-	
-	<script src="scripts.js"></script>
+
+    <script src="scripts.js"></script>
 
     <script>
         // Получаем элемент <input> по его идентификатору
         var startDateInput = document.getElementById('startDate');
-      
+
         // Создаем объект Date для сегодняшней даты
         var today = new Date();
-		
+
         // Получаем год, месяц и день для сегодняшней даты
         var year = today.getFullYear();
         var month = (today.getMonth() + 1).toString().padStart(2, '0'); // добавляем 0 перед однозначным месяцем
         var day = today.getDate().toString().padStart(2, '0'); // добавляем 0 перед однозначным числом
-      
+
         // Форматируем дату в строку в формате YYYY-MM-DD (стандартный формат для элемента <input type="date>)
         var formattedDate = year + '-' + month + '-' + day;
-      
+
         // Устанавливаем полученное значение в элемент <input>
         startDateInput.value = formattedDate;
     </script>

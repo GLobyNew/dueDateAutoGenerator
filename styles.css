@@ -1,3 +1,14 @@
+/* Reset some default browser styles */
+body, html {
+  margin: 0;
+  padding: 0;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+/* Style the wrapper container */
 #wrapper {
   max-width: 500px;
   margin: 20px auto;
@@ -7,40 +18,83 @@
   text-align: center;
 }
 
+/* Style links on hover */
 a:hover {
   color: #0FC;
   text-decoration: underline;
 }
 
+/* Style the input container */
 #inputs {
-  margin-bottom: 20px;
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  position: relative; /* Added for positioning of custom arrow */
 }
 
-#startDate {
-  height: 30px;
-  width: 150px;
-  padding: 5px;
+/* Common styles for input elements */
+#startDate, #projectType, button {
+  height: 36px; 
+  padding: 8px 12px; 
   font-size: 14px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  line-height: 1.2; 
+}
+
+#startDate {
+  width: 160px;
+  margin-right: 10px;
+}
+
+/* Style the projectType dropdown with custom arrow */
+#projectType {
+  width: 100%;
+  height: 36px;
+  padding: 8px 12px 8px 12px; 
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  -webkit-appearance: none; /* Hide default select arrow in Webkit browsers */
+  -moz-appearance: none; /* Hide default select arrow in Mozilla browsers */
+  appearance: none;
+  background-color: white;
+}
+#projectType::-moz-focus-inner {
+    border: 0; /* Removes border for Firefox */
+}
+
+#projectType::after {
+  content: "\25BC"; /* Downward-pointing arrow character */
+  position: absolute;
+  right: 10px; /* Adjust as needed */
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  font-size: 12px;
 }
 
 button {
-  height: 30px;
-  background-color: transparent; /* Без цвета фона */
-  color: #333; /* Темный цвет текста */
-  border: 1px solid #333; /* Темная граница */
-  border-radius: 5px;
+  min-width: 150px;
+  background-color: transparent;
+  color: #333;
   cursor: pointer;
-  transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Анимация при наведении */
-  margin-top: 10px; /* Расположение кнопки ниже текстового окна */
-
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  text-align: center;
+  margin: 0;
+  padding: 8px 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  line-height: 1.2;
 }
 
-/* Стили для кнопки "Скопировать" */
+/* Style the "Скопировать" button */
 button.copy-button {
-    margin-top: 10px; /* Расположение кнопки ниже текстового окна */
-    background-color: #333; /* Измените цвет фона на более темный */
+    margin-top: 10px;
+    background-color: #333;
     color: white;
     border: none;
     padding: 10px 15px;
@@ -49,23 +103,60 @@ button.copy-button {
     transition: background-color 0.3s;
 }
 
+/* Change the copied button background color */
 button.copy-button.copied {
     background-color: #4CAF50;
 }
 
-
+/* Style buttons on hover */
 button:hover {
-  background-color: #333; /* Темный цвет фона при наведении */
-  color: white; /* Белый цвет текста при наведении */
-  border-color: transparent; /* Прозрачная граница при наведении */
+    background-color: #333;
+    color: white;
+    border-color: transparent;
 }
 
+/* Style the text area */
 #text {
-  max-width: 400px;
-  margin: 0 auto;
-  text-align: left;
-  border: 1px solid #ccc;
-  padding: 20px;
-  border-radius: 5px;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    text-align: left;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
 }
 
+textarea {
+    resize: none;
+}
+
+.select-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 170px; /* increased width */
+  margin-right: 10px;
+}
+
+#projectType {
+  width: 100%;
+  height: 36px;
+  padding: 8px 12px; 
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  -webkit-appearance: none; /* Hide default select arrow in Webkit browsers */
+  -moz-appearance: none; /* Hide default select arrow in Mozilla browsers */
+  appearance: none;
+  background-color: white;
+}
+
+.select-wrapper::after {
+  content: "\25BC"; /* Downward-pointing arrow character */
+  position: absolute;
+  right: 6px; /* Adjust to place the arrow further to the left */
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  font-size: 12px;
+  
+}
