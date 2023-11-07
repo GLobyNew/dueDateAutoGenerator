@@ -10,7 +10,7 @@ body, html {
 
 /* Style the wrapper container */
 #wrapper {
-  max-width: 500px;
+  max-width: 600px;
   margin: 20px auto;
   padding: 20px;
   border: 1px solid #ccc;
@@ -133,7 +133,7 @@ textarea {
 .select-wrapper {
   position: relative;
   display: inline-block;
-  width: 170px; /* increased width */
+  width: 200px; /* increased width */
   margin-right: 10px;
 }
 
