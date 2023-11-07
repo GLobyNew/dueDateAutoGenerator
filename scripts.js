@@ -5,54 +5,138 @@ function generate() {
     // Получаем значение начальной даты из элемента <input>
     var startDateInput = document.getElementById('startDate').value;
 
-    // Парсим значение в объект Date
-    var startDate = new Date(startDateInput);
-    let textArray = [
-        "Написание сценплана", 6,
-        "Согласование сценплана режиссером", 7,
-        "Запись спикеров", 14,
-        "Монтаж рыбы", 15,
-        "Написание сценария", 22,
-        "Согласование сценария", 24,
-        "Графика", 26,
-        "Анимация", 27,
-        "Монтаж", 31
-    ];
+    // Получаем значение выбранной опции в селекторе
+    var projectTypeSelect = document.getElementById('projectType');
+    var selectedOption = projectTypeSelect.options[projectTypeSelect.selectedIndex].value;
 
+    if (selectedOption === 'Трэвел') {
+        let TextArray = [
+            "Подготовка локаций редактором", 5,
+            "Проверка и ок локаций продюсером", 6,
+            "Написание сценплана и согласование шеф-редом", 13,
+            "Согласование сценплана режем", 14,
+            "Поиск спикеров и организация поездки Илье", 15,
+            "Монтаж рыбы", 20,
+            "Написание сценария и согласование шеф-редом", 29,
+            "Согласование сценария режем", 31,
+            "Внесение правок редактором", 32,
+            "Монтаж первого черновика", 42,
+            "Правки по первому черновику", 44,
+            "Сбор тегов", 45,
+            "Оформление (редактор)", 47,
+            "Запись закадра Ильи", "Без даты",
+            "Перевод", 50,
+            "Озвучка", 53,
+            "Графика", 60,
+			"Фактчекинг", 61,
+            "Анимация", 64,
+            "Звук", 71,
+            "Финальный монтаж", 73
+        ];
+
+        generateText(textArea, new Date(startDateInput), TextArray);
+    } else if (selectedOption === 'Студийка') {
+        let TextArray = [
+			"Написание сценплана и согласование шеф-редом", 7,
+			"Согласование сценплана режем", 8,
+			"Поиск и запись спикеров", 15,
+			"Монтаж рыбы", 16,
+			"Написание сценария и согласование шеф-редом", 23,
+			"Согласование сценария режем", 25,
+			"Сбор тегов", 26,
+			"Оформление (редактор)", 28,
+			"Монтаж первого черновика", 33,
+			"Правки по первому черновику", 34,
+			"Озвучка", 36,
+			"Графика", 43,
+			"Фактчекинг", 44,
+			"Анимация", 46,
+			"Звук", "Без даты",
+			"Финальный монтаж", 48
+		];
+		generateText(textArea, new Date(startDateInput), TextArray);
+    } else if (selectedOption === 'Фильмы с корром') {
+        let TextArray = [
+			"Поиск спикеров", 1,
+			"Написание сценплана и согласование шеф-редом", 8,
+			"Согласование сценплана режем", 9,
+			"Организация поездки корру", 16,
+			"Монтаж рыбы", 19,
+			"Написание сценария и согласование шеф-редом", 28,
+			"Согласование сценария режем", 30,
+			"Монтаж первого черновику", 31,
+			"Правки по первому черновику", 33,
+			"Сбор тегов", 34,
+			"Оформление (редактор)", 36,
+			"Озвучка", 38,
+			"Графика", 45,
+			"Фактчекинг", 46,
+			"Анимация", 49,
+			"Звук", 56,
+			"Финальный монтаж", 59
+		];
+		generateText(textArea, new Date(startDateInput), TextArray);
+    } else {
+        // Handle any other options or display a message
+        textArea.value = 'Выберите опцию для генерации.';
+    }
+}
+
+function generateText(textArea, startDate, textArray) {
+    var innerHTML = '';
     for (var i = 0; i < textArray.length; i += 2) {
         var task = textArray[i];
         var daysToAdd = textArray[i + 1];
-        var endDate = new Date(startDate);
-        endDate.setDate(startDate.getDate() + daysToAdd);
 
-        var formattedEndDate = endDate.toLocaleDateString('ru-RU', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-        });
+        if (typeof daysToAdd === 'number') {
+            var endDate = new Date(startDate);
+            endDate.setDate(startDate.getDate() + daysToAdd);
 
-        textArea.value += task + ' - ' + formattedEndDate + "\n";
+            var formattedEndDate = endDate.toLocaleDateString('ru-RU', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+
+            innerHTML += `${task} - ${formattedEndDate}<br>`;
+        } else {
+            // Highlight "Без даты" with red color
+            innerHTML += `<span style="color: red;">${task} - ${daysToAdd}</span><br>`;
+        }
     }
+    textArea.innerHTML = innerHTML; // Use innerHTML instead of value
 }
 
 // Функция для копирования текста из <textarea id="text"></textarea>
 function copyText() {
-    var textArea = document.getElementById('text');
-    var copyButton = document.querySelector('.copy-button');
+  var textDiv = document.getElementById('text');
+  var copyButton = document.querySelector('.copy-button');
 
-    // Выделяем весь текст в <textarea>
-    textArea.select();
-
-    // Копируем текст в буфер обмена
-    document.execCommand('copy');
-
-    // Оповещаем пользователя о копировании
-    copyButton.textContent = 'Скопировано!';
-    copyButton.classList.add('copied');
-
-    // Убираем анимацию и возвращаем исходное состояние через 2 секунды
-    setTimeout(function() {
-        copyButton.textContent = 'Скопировать';
-        copyButton.classList.remove('copied');
-    }, 2000);
+  // Create a temporary textarea element
+  var tempTextArea = document.createElement('textarea');
+  
+  // Use innerText instead of textContent to preserve line breaks
+  tempTextArea.value = textDiv.innerText;
+  document.body.appendChild(tempTextArea);
+  
+  // Select and copy the text
+  tempTextArea.select();
+  document.execCommand('copy');
+  
+  // Remove the temporary textarea
+  document.body.removeChild(tempTextArea);
+  
+  // Notify user of copy
+  copyButton.textContent = 'Скопировано!';
+  copyButton.classList.add('copied');
+  
+  // Reset button after delay
+  setTimeout(function() {
+      copyButton.textContent = 'Скопировать';
+      copyButton.classList.remove('copied');
+  }, 2000);
 }
+
+
+
+

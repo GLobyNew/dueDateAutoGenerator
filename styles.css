@@ -160,3 +160,23 @@ textarea {
   font-size: 12px;
   
 }
+
+.text-output {
+    width: 80%; /* Same as cols="80" on the original textarea */
+    height: 300px; /* You can adjust this as necessary, similar to rows="15" */
+    border: 1px solid #ccc; /* Similar to the textarea border */
+    font-family: monospace; /* To mimic typical textarea font */
+    margin: 0;
+    padding: 10px;
+    white-space: pre-wrap; /* Preserve whitespaces and new lines */
+    overflow: auto; /* Add scroll */
+}
+
+.text-output[placeholder]:empty:before {
+    content: attr(placeholder);
+    color: grey;
+}
+
+.text-output:focus:before {
+    content: none;
+}
