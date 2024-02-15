@@ -10,7 +10,7 @@ body, html {
 
 /* Style the wrapper container */
 #wrapper {
-  max-width: 600px;
+  max-width: 800px;
   margin: 20px auto;
   padding: 20px;
   border: 1px solid #ccc;
@@ -23,6 +23,13 @@ a:hover {
   color: #0FC;
   text-decoration: underline;
 }
+
+.checkbox-wrapper label {
+  margin-right: 10px;
+  font-size: 16px; /* Adjust font size as needed for compactness */
+
+}
+
 
 /* Style the input container */
 #inputs {
