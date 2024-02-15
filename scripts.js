@@ -91,6 +91,7 @@ function generate() {
 
 function generateText(textArea, startDate, textArray) {
     var innerHTML = '';
+	var showYearCheckbox = document.getElementById('showYear');
     for (var i = 0; i < textArray.length; i += 2) {
         var task = textArray[i];
         var daysToAdd = textArray[i + 1];
@@ -99,12 +100,19 @@ function generateText(textArea, startDate, textArray) {
             var endDate = new Date(startDate);
             endDate.setDate(startDate.getDate() + daysToAdd);
 
-            var formattedEndDate = endDate.toLocaleDateString('ru-RU', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-            });
-
+            var formattedEndDate;
+			if (showYearCheckbox.checked) {
+				formattedEndDate = endDate.toLocaleDateString('ru-RU', {
+					year: 'numeric',
+					month: 'long',
+					day: 'numeric'
+				});
+			} else {
+				formattedEndDate = endDate.toLocaleDateString('ru-RU', {
+					month: 'long',
+					day: 'numeric'
+				});
+			}
             innerHTML += `${task} - ${formattedEndDate}<br>`;
         } else {
             // Highlight "Без даты" with red color
